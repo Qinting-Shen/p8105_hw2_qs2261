@@ -5,4 +5,20 @@ date: "2023-10-04"
 output: github_document
 ---
 
+```{r, set up}
+library(readxl)
+library(tidyverse)
+```
+
+## Problem 2
+
+read and clean the Mr. Trash Wheel sheet, and calculate `homes_powered`
+
+```{r}
+trash_df=read_excel("data/202309 Trash Wheel Collection Data (1).xlsx", sheet = "Mr. Trash Wheel", range = "A2:N586", col_names = TRUE) |> 
+  janitor::clean_names() |> 
+  mutate(homes_powered = weight_tons * 500 / 30)
+```
+
+
 
