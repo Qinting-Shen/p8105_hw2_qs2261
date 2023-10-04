@@ -15,10 +15,27 @@ library(tidyverse)
 read and clean the Mr. Trash Wheel sheet, and calculate `homes_powered`
 
 ```{r}
-trash_df=read_excel("data/202309 Trash Wheel Collection Data (1).xlsx", sheet = "Mr. Trash Wheel", range = "A2:N586", col_names = TRUE) |> 
+mr_df=read_excel("data/202309 Trash Wheel Collection Data (1).xlsx", sheet = 1, range = "A2:N586", col_names = TRUE) |> 
   janitor::clean_names() |> 
   mutate(homes_powered = weight_tons * 500 / 30)
 ```
 
 
+read and clean the Professor Trash Wheel sheet, and calculate `homes_powered`
+```{r}
+prof_df=read_excel("data/202309 Trash Wheel Collection Data (1).xlsx", sheet = 2, range = "A2:M108", col_names = TRUE) |> 
+  janitor::clean_names() |> 
+  mutate(homes_powered = weight_tons * 500 / 30)
+
+```
+
+
+
+read and clean the Gwynnda Trash Wheel sheet, and calculate `homes_powered`
+```{r}
+gwy_df=read_excel("data/202309 Trash Wheel Collection Data (1).xlsx", sheet = 4, range = "A2:L157", col_names = TRUE) |> 
+  janitor::clean_names() |> 
+  mutate(homes_powered = weight_tons * 500 / 30)
+
+```
 
