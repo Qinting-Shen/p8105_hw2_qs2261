@@ -1,0 +1,8 @@
+---
+title: "p8105_hw2_qs2261"
+author: "Qinting Shen"
+date: "2023-10-04"
+output: github_document
+---
+
+
