@@ -74,5 +74,20 @@ mci_baseline_df=
   mutate(age_at_onset= as.numeric(age_at_onset))
 ```
 
+I recoded the sex and apoe4 variables to make it easier for people to understand the meaning, and select those who have MCI into our dataset, and then change the `age_at_onset` variable to numeric variable.
+
+* I recruited `r nrow(mci_baseline_df)` participants
+`r mci_baseline_df |> filter(`
+
+
+import, clean, and tidy the dataset of longitudinally observed biomarker values
+
+```{r}
+mci_amyloid_df=
+  read_csv("data/data_mci/mci_amyloid.csv", skip=1) |> 
+  janitor::clean_names() |> 
+  rename(id=study_id, time_0= baseline) |> 
+  mutate(time_0 = as.numeric(time_0), time_2 = as.numeric(time_2), time_4 = as.numeric(time_4), time_6 = as.numeric(time_6), time_8 = as.numeric(time_8)) |> pivot_longer(time_0:time_8, names_to = "years_elapsed_since_baseline", values_to = "amyloid_42_40_ratio", names_prefix = "time_")
+```
 
 
