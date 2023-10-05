@@ -90,4 +90,4 @@ mci_amyloid_df=
   mutate(time_0 = as.numeric(time_0), time_2 = as.numeric(time_2), time_4 = as.numeric(time_4), time_6 = as.numeric(time_6), time_8 = as.numeric(time_8)) |> pivot_longer(time_0:time_8, names_to = "years_elapsed_since_baseline", values_to = "amyloid_42_40_ratio", names_prefix = "time_")
 ```
 
-
+I changed the data name into the right format, and rename the `study_id` and `baseline` to make them match the variable name in baseline dataset. And then I change the time variables to numeric type, and modify the time variable to avoid them being to long.
