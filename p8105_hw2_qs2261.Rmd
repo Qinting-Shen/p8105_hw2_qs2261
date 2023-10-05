@@ -58,9 +58,6 @@ combine_df=
 
 * Total weight of trash collected by Professor Trash Wheel is `r sum(prof_df$weight_tons)`.
 
-* Total number of cigarette butts collected by Gwynnda in July of 2021 is 
-`r cig=gwy_df |> filter(year=="2021") |> filter(month=="July") sum(pull(cig, cigarette_butts))` 
-
 ## Problem 3
 
 Import, clean, and tidy the dataset of baseline demographics.
@@ -74,10 +71,11 @@ mci_baseline_df=
   mutate(age_at_onset= as.numeric(age_at_onset))
 ```
 
-I recoded the sex and apoe4 variables to make it easier for people to understand the meaning, and select those who have MCI into our dataset, and then change the age_at_onset variable to numeric variable.
+I recoded the sex and apoe4 variables to make it easier for people to understand the meaning, and select those who have MCI into our dataset, and then change the `age_at_onset` variable to numeric variable.
 
-* I recruited `r nrow(mci_baseline_df)` participants
-`r mci_baseline_df |> filter(`
+* I recruited `r nrow(mci_baseline_df)` participants. 
+
+* The average baseline age is `r mean(pull(mci_baseline_df, current_age))`
 
 
 import, clean, and tidy the dataset of longitudinally observed biomarker values
@@ -90,7 +88,8 @@ mci_amyloid_df=
   mutate(time_0 = as.numeric(time_0), time_2 = as.numeric(time_2), time_4 = as.numeric(time_4), time_6 = as.numeric(time_6), time_8 = as.numeric(time_8)) |> pivot_longer(time_0:time_8, names_to = "years_elapsed_since_baseline", values_to = "amyloid_42_40_ratio", names_prefix = "time_")
 ```
 
-I changed the data name into the right format, and rename the `study_id` and `baseline` to make them match the variable name in baseline dataset. And then I change the time variables to numeric type, and modify the time variable to avoid them being to long.
+* I changed the data name into the right format, and rename the `study_id` and `baseline` to make them match the variable name in baseline dataset. And then I change the time variables to numeric type, and modify the time variable to avoid them being to long.
+
 
 Merge the two dataset.
 
