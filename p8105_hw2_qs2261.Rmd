@@ -17,25 +17,40 @@ read and clean the Mr. Trash Wheel sheet, and calculate `homes_powered`
 ```{r}
 mr_df=read_excel("data/202309 Trash Wheel Collection Data (1).xlsx", sheet = 1, range = "A2:N586", col_names = TRUE) |> 
   janitor::clean_names() |> 
-  mutate(homes_powered = weight_tons * 500 / 30)
+  mutate(year=as.numeric(year),
+         wheel_type=c("Mr. Trash"),
+         homes_powered = weight_tons * 500 / 30)
 ```
 
 
 read and clean the Professor Trash Wheel sheet, and calculate `homes_powered`
+
 ```{r}
 prof_df=read_excel("data/202309 Trash Wheel Collection Data (1).xlsx", sheet = 2, range = "A2:M108", col_names = TRUE) |> 
   janitor::clean_names() |> 
-  mutate(homes_powered = weight_tons * 500 / 30)
+  mutate(year=as.numeric(year),
+         wheel_type=c("Professor Trash"),
+         homes_powered = weight_tons * 500 / 30)
 
 ```
 
 
-
 read and clean the Gwynnda Trash Wheel sheet, and calculate `homes_powered`
+
 ```{r}
 gwy_df=read_excel("data/202309 Trash Wheel Collection Data (1).xlsx", sheet = 4, range = "A2:L157", col_names = TRUE) |> 
   janitor::clean_names() |> 
-  mutate(homes_powered = weight_tons * 500 / 30)
+  mutate(year=as.numeric(year),
+         wheel_type=c("Gwynnda Trash"),
+         homes_powered = weight_tons * 500 / 30)
 
+```
+
+combine datasets
+
+```{r}
+combine_df=
+  bind_rows(mr_df, prof_df, gwy_df) |> 
+  select(wheel_type, dumpster, everything())
 ```
 
